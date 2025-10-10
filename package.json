@@ -1,7 +1,7 @@
 {
   "name": "marsa11yfix",
   "displayName": "MARSA11y Accessibility Checker",
-  "description": "Real-time accessibility checker for HTML files with visual indicators and comprehensive issue detection",
+  "description": "Real-time HTML accessibility checker with visual indicators",
   "version": "0.0.1",
   "publisher": "MARSA11y",
   "engines": {
