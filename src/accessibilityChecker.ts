@@ -2,6 +2,9 @@ import * as vscode from 'vscode';
 import { FormElementsChecker } from './formElementsChecker';
 import { ImageChecker } from './imageChecker';
 import { OtherAccessibilityChecker } from './otherAccessibilityChecker';
+import { AriaLabelRoleChecker } from './ariaLabelRoleChecker';
+import { TabIndexChecker } from './tabIndexChecker';
+import { SemanticHtmlChecker } from './semanticHtmlChecker';
 
 export interface AccessibilityIssue {
 	line: number;
@@ -28,9 +31,12 @@ export class AccessibilityChecker {
 			const imageIssues = ImageChecker.checkImages(line, lineNumber);
 			const formIssues = FormElementsChecker.checkFormElements(line, lineNumber);
 			const otherIssues = OtherAccessibilityChecker.checkOtherAccessibility(line, lineNumber, text);
+			const ariaRoleIssues = AriaLabelRoleChecker.checkAriaLabelAndRole(line, lineNumber, text);
+			const tabIndexIssues = TabIndexChecker.checkTabIndex(line, lineNumber);
+			const semanticHtmlIssues = SemanticHtmlChecker.checkSemanticHtml(line, lineNumber, text);
 
 			// Combine all issues
-			const allIssues = [...imageIssues, ...formIssues, ...otherIssues];
+			const allIssues = [...imageIssues, ...formIssues, ...otherIssues, ...ariaRoleIssues, ...tabIndexIssues, ...semanticHtmlIssues];
 			
 			allIssues.forEach(issue => {
 				issues.push(issue);
