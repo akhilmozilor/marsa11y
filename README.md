@@ -1,51 +1,69 @@
-# marsa11yfix README
+# marsa11yFix - Accessibility Checker
 
-This is the README for your extension "marsa11yfix". After writing up a brief description, we recommend including the following sections.
+A VS Code extension that helps developers identify accessibility issues in HTML files while coding. Get real-time feedback with visual indicators and detailed console output to make your web content more accessible.
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+- **Real-time Accessibility Checking**: Automatically detects accessibility issues as you type in HTML files
+- **Visual Indicators**: Red, yellow, and blue underlines highlight issues directly in your code
+- **Comprehensive Issue Detection**: Checks for common accessibility problems including:
+  - Missing alt attributes on images
+  - Missing form labels and ARIA attributes
+  - Missing language attributes
+  - Keyboard accessibility issues
+  - Color-only information warnings
+  - Focus indicator problems
+- **Console Feedback**: Detailed logging with severity levels and helpful tips
+- **Problems Panel Integration**: All issues appear in VS Code's Problems panel for easy navigation
 
-For example if there is an image subfolder under your extension project workspace:
+## How It Works
 
-\!\[feature X\]\(images/feature-x.png\)
-
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+1. **Automatic Activation**: Extension activates when you open HTML files or when your workspace contains HTML files
+2. **Real-time Monitoring**: Watches for changes in HTML files and analyzes them instantly
+3. **Visual Feedback**: Shows colored underlines (red for high priority, yellow for medium, blue for low)
+4. **Detailed Information**: Hover over underlined code to see specific accessibility issues
 
 ## Requirements
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+- VS Code 1.105.0 or higher
+- HTML files in your workspace
 
-## Extension Settings
+## Extension Commands
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+This extension contributes the following commands:
 
-For example:
+* `marsa11yfix.helloWorld`: Display a welcome message
+* `marsa11yfix.checkSelectedText`: Check accessibility for selected text (coming soon)
 
-This extension contributes the following settings:
+## Installation
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+1. Install the extension from the VS Code marketplace
+2. Open an HTML file
+3. Start coding - the extension will automatically check for accessibility issues
+
+## Usage
+
+Simply open any HTML file and start coding. The extension will:
+- Show red underlines for high-priority accessibility issues
+- Show yellow underlines for medium-priority issues  
+- Show blue underlines for low-priority warnings
+- Log detailed information to the console
+- Display issues in the Problems panel
 
 ## Known Issues
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+- Currently checks entire HTML documents (selected text checking coming soon)
+- Some advanced accessibility patterns may not be detected
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
+### 0.0.1
 
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
+Initial release of marsa11yFix:
+- Real-time HTML accessibility checking
+- Visual indicators with colored underlines
+- Comprehensive issue detection
+- Console logging and Problems panel integration
 
 ---
 

@@ -1,16 +1,25 @@
 {
   "name": "marsa11yfix",
-  "displayName": "marsa11yFix",
-  "description": "fix issues",
+  "displayName": "MARSA11y Accessibility Checker",
+  "description": "Real-time accessibility checker for HTML files with visual indicators and comprehensive issue detection",
   "version": "0.0.1",
+  "publisher": "MARSA11y",
   "engines": {
     "vscode": "^1.105.0"
   },
   "categories": [
     "Other"
   ],
-  "activationEvents": [],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/akhilmozilor/marsa11y.git"
+  },
+  "activationEvents": [
+    "onLanguage:html",
+    "workspaceContains:**/*.html"
+  ],
   "main": "./dist/extension.js",
+  "icon": "images/icon.png",
   "contributes": {
     "commands": [
       {
@@ -58,6 +67,8 @@
     "compile": "webpack",
     "watch": "webpack --watch",
     "package": "webpack --mode production --devtool hidden-source-map",
+    "package-vsix": "vsce package",
+    "build-and-package": "npm run compile && npm run package-vsix",
     "compile-tests": "tsc -p . --outDir out",
     "watch-tests": "tsc -p . -w --outDir out",
     "pretest": "npm run compile-tests && npm run compile && npm run lint",
