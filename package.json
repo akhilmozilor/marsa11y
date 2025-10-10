@@ -16,8 +16,42 @@
       {
         "command": "marsa11yfix.helloWorld",
         "title": "Hello World"
+      },
+      {
+        "command": "marsa11yfix.autoFixAltTags",
+        "title": "Auto-fix Missing Alt Tags",
+        "category": "Accessibility"
+      },
+      {
+        "command": "marsa11yfix.autoFixCurrentImage",
+        "title": "Auto-fix Current Image Alt Tag",
+        "category": "Accessibility"
       }
-    ]
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "marsa11yfix.autoFixCurrentImage",
+          "when": "editorTextFocus && resourceExtname == .html",
+          "group": "accessibility"
+        },
+        {
+          "command": "marsa11yfix.autoFixAltTags",
+          "when": "editorTextFocus && resourceExtname == .html",
+          "group": "accessibility"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "MARSA11Y Fix",
+      "properties": {
+        "marsa11yfix.openaiApiKey": {
+          "type": "string",
+          "default": "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",
+          "description": "OpenAI API key for auto-generating alt text"
+        }
+      }
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run package",
@@ -29,6 +63,9 @@
     "pretest": "npm run compile-tests && npm run compile && npm run lint",
     "lint": "eslint src",
     "test": "vscode-test"
+  },
+  "dependencies": {
+    "openai": "^4.20.1"
   },
   "devDependencies": {
     "@types/vscode": "^1.105.0",
