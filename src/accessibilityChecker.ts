@@ -2,6 +2,14 @@ import * as vscode from 'vscode';
 import { FormElementsChecker } from './formElementsChecker';
 import { ImageChecker } from './imageChecker';
 import { OtherAccessibilityChecker } from './otherAccessibilityChecker';
+import { AriaLabelRoleChecker } from './ariaLabelRoleChecker';
+import { TabIndexChecker } from './tabIndexChecker';
+import { SemanticHtmlChecker } from './semanticHtmlChecker';
+import { ColorContrastChecker } from './colorContrastChecker';
+import { KeyboardNavigationChecker } from './keyboardNavigationChecker';
+import { FocusManagementChecker } from './focusManagementChecker';
+import { InputPurposeChecker } from './inputPurposeChecker';
+import { LabelNameConsistencyChecker } from './labelNameConsistencyChecker';
 
 export interface AccessibilityIssue {
 	line: number;
@@ -28,9 +36,31 @@ export class AccessibilityChecker {
 			const imageIssues = ImageChecker.checkImages(line, lineNumber);
 			const formIssues = FormElementsChecker.checkFormElements(line, lineNumber);
 			const otherIssues = OtherAccessibilityChecker.checkOtherAccessibility(line, lineNumber, text);
+			const ariaRoleIssues = AriaLabelRoleChecker.checkAriaLabelAndRole(line, lineNumber, text);
+			const tabIndexIssues = TabIndexChecker.checkTabIndex(line, lineNumber);
+			const semanticHtmlIssues = SemanticHtmlChecker.checkSemanticHtml(line, lineNumber, text);
+			
+			// New WCAG 2.1 mandatory checkers
+			const colorContrastIssues = ColorContrastChecker.checkColorContrastIssues(line, lineNumber);
+			const keyboardNavigationIssues = KeyboardNavigationChecker.checkKeyboardNavigation(line, lineNumber, text);
+			const focusManagementIssues = FocusManagementChecker.checkFocusManagement(line, lineNumber);
+			const inputPurposeIssues = InputPurposeChecker.checkInputPurpose(line, lineNumber);
+			const labelNameConsistencyIssues = LabelNameConsistencyChecker.checkLabelNameConsistency(line, lineNumber);
 
 			// Combine all issues
-			const allIssues = [...imageIssues, ...formIssues, ...otherIssues];
+			const allIssues = [
+				...imageIssues, 
+				...formIssues, 
+				...otherIssues, 
+				...ariaRoleIssues, 
+				...tabIndexIssues, 
+				...semanticHtmlIssues, 
+				...colorContrastIssues, 
+				...keyboardNavigationIssues, 
+				...focusManagementIssues, 
+				...inputPurposeIssues, 
+				...labelNameConsistencyIssues
+			];
 			
 			allIssues.forEach(issue => {
 				issues.push(issue);
