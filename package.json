@@ -47,7 +47,7 @@
       "properties": {
         "marsa11yfix.openaiApiKey": {
           "type": "string",
-          "default": "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",
+          "default": "",
           "description": "OpenAI API key for auto-generating alt text"
         }
       }
